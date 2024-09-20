@@ -1,4 +1,6 @@
-{
+{	
+	"name": "custom",
+	"som": "seed",
 	"components": {
 		"sw1": {
 			"component": "Switch",
