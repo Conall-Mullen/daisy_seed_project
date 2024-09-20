@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-5",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 236.0, 51.0, 150.0, 33.0 ],
+					"text" : "Here is a comment on the new feature branch"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ "patch" ],
 					"bgmode" : 0,
 					"border" : 0,
