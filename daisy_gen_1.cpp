@@ -68,26 +68,24 @@ static const int GENLIB_LOOPCOUNT_BAIL = 100000;
 // The State struct contains all the state and procedures for the gendsp kernel
 typedef struct State {
 	CommonState __commonstate;
-	int __exception;
+	Delay m_delay_1;
 	int vectorsize;
-	t_sample m_sw_3;
-	t_sample m_sw_4;
-	t_sample __m_latch_5;
-	t_sample m_knob_2;
+	int __exception;
+	t_sample m_time_4;
 	t_sample samplerate;
-	t_sample m_knob_1;
-	t_sample __m_latch_6;
+	t_sample m_mix_3;
+	t_sample m_sw_2;
+	t_sample __m_latch_5;
 	// re-initialize all member variables;
 	inline void reset(t_param __sr, int __vs) {
 		__exception = 0;
 		vectorsize = __vs;
 		samplerate = __sr;
-		m_knob_1 = ((int)0);
-		m_knob_2 = ((int)0);
-		m_sw_3 = ((int)0);
-		m_sw_4 = ((int)0);
+		m_delay_1.reset("m_delay_1", samplerate);
+		m_sw_2 = ((int)1);
+		m_mix_3 = ((t_sample)0.5);
+		m_time_4 = ((t_sample)0.5);
 		__m_latch_5 = 0;
-		__m_latch_6 = 0;
 		genlib_reset_complete(this);
 		
 	};
@@ -95,29 +93,29 @@ typedef struct State {
 	inline int perform(t_sample ** __ins, t_sample ** __outs, int __n) {
 		vectorsize = __n;
 		const t_sample * __in1 = __ins[0];
-		const t_sample * __in2 = __ins[1];
 		t_sample * __out1 = __outs[0];
 		t_sample * __out2 = __outs[1];
 		if (__exception) {
 			return __exception;
 			
-		} else if (( (__in1 == 0) || (__in2 == 0) || (__out1 == 0) || (__out2 == 0) )) {
+		} else if (( (__in1 == 0) || (__out1 == 0) || (__out2 == 0) )) {
 			__exception = GENLIB_ERR_NULL_BUFFER;
 			return __exception;
 			
 		};
+		t_sample mul_8 = (m_time_4 * ((t_sample)0.001));
+		t_sample mul_7 = (samplerate * mul_8);
 		// the main sample loop;
 		while ((__n--)) {
 			const t_sample in1 = (*(__in1++));
-			const t_sample in2 = (*(__in2++));
-			__m_latch_5 = ((m_sw_4 != 0) ? in1 : __m_latch_5);
-			t_sample latch_9 = __m_latch_5;
-			t_sample mul_7 = (latch_9 * m_knob_2);
-			t_sample out1 = mul_7;
-			__m_latch_6 = ((m_sw_3 != 0) ? in2 : __m_latch_6);
-			t_sample latch_8 = __m_latch_6;
-			t_sample mul_6 = (latch_8 * m_knob_1);
-			t_sample out2 = mul_6;
+			__m_latch_5 = ((m_sw_2 != 0) ? in1 : __m_latch_5);
+			t_sample latch_4 = __m_latch_5;
+			t_sample tap_6 = m_delay_1.read_linear(mul_7);
+			t_sample mix_47 = (latch_4 + (m_mix_3 * (tap_6 - latch_4)));
+			t_sample out1 = mix_47;
+			t_sample out2 = mix_47;
+			m_delay_1.write(latch_4);
+			m_delay_1.step();
 			// assign results to output buffer;
 			(*(__out1++)) = out1;
 			(*(__out2++)) = out2;
@@ -126,17 +124,14 @@ typedef struct State {
 		return __exception;
 		
 	};
-	inline void set_knob2(t_param _value) {
-		m_knob_1 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
-	};
-	inline void set_knob1(t_param _value) {
-		m_knob_2 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
-	};
-	inline void set_sw2(t_param _value) {
-		m_sw_3 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
-	};
 	inline void set_sw1(t_param _value) {
-		m_sw_4 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+		m_sw_2 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+	};
+	inline void set_mix(t_param _value) {
+		m_mix_3 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+	};
+	inline void set_time(t_param _value) {
+		m_time_4 = (_value < 10 ? 10 : (_value > 1000 ? 1000 : _value));
 	};
 	
 } State;
@@ -148,16 +143,16 @@ typedef struct State {
 
 /// Number of signal inputs and outputs
 
-int gen_kernel_numins = 2;
+int gen_kernel_numins = 1;
 int gen_kernel_numouts = 2;
 
 int num_inputs() { return gen_kernel_numins; }
 int num_outputs() { return gen_kernel_numouts; }
-int num_params() { return 4; }
+int num_params() { return 3; }
 
 /// Assistive lables for the signal inputs and outputs
 
-const char *gen_kernel_innames[] = { "in1", "in2" };
+const char *gen_kernel_innames[] = { "in1" };
 const char *gen_kernel_outnames[] = { "out1", "out2" };
 
 /// Invoke the signal process of a State object
@@ -179,10 +174,9 @@ void reset(CommonState *cself) {
 void setparameter(CommonState *cself, long index, t_param value, void *ref) {
 	State *self = (State *)cself;
 	switch (index) {
-		case 0: self->set_knob1(value); break;
-		case 1: self->set_knob2(value); break;
-		case 2: self->set_sw1(value); break;
-		case 3: self->set_sw2(value); break;
+		case 0: self->set_mix(value); break;
+		case 1: self->set_sw1(value); break;
+		case 2: self->set_time(value); break;
 		
 		default: break;
 	}
@@ -193,10 +187,9 @@ void setparameter(CommonState *cself, long index, t_param value, void *ref) {
 void getparameter(CommonState *cself, long index, t_param *value) {
 	State *self = (State *)cself;
 	switch (index) {
-		case 0: *value = self->m_knob_2; break;
-		case 1: *value = self->m_knob_1; break;
-		case 2: *value = self->m_sw_4; break;
-		case 3: *value = self->m_sw_3; break;
+		case 0: *value = self->m_mix_3; break;
+		case 1: *value = self->m_sw_2; break;
+		case 2: *value = self->m_time_4; break;
 		
 		default: break;
 	}
@@ -277,13 +270,13 @@ void *create(t_param sr, long vs) {
 	self->__commonstate.numouts = gen_kernel_numouts;
 	self->__commonstate.sr = sr;
 	self->__commonstate.vs = vs;
-	self->__commonstate.params = (ParamInfo *)genlib_sysmem_newptr(4 * sizeof(ParamInfo));
-	self->__commonstate.numparams = 4;
-	// initialize parameter 0 ("m_knob_2")
+	self->__commonstate.params = (ParamInfo *)genlib_sysmem_newptr(3 * sizeof(ParamInfo));
+	self->__commonstate.numparams = 3;
+	// initialize parameter 0 ("m_mix_3")
 	pi = self->__commonstate.params + 0;
-	pi->name = "knob1";
+	pi->name = "mix";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_knob_2;
+	pi->defaultvalue = self->m_mix_3;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
@@ -293,25 +286,11 @@ void *create(t_param sr, long vs) {
 	pi->outputmax = 1;
 	pi->exp = 0;
 	pi->units = "";		// no units defined
-	// initialize parameter 1 ("m_knob_1")
+	// initialize parameter 1 ("m_sw_2")
 	pi = self->__commonstate.params + 1;
-	pi->name = "knob2";
-	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_knob_1;
-	pi->defaultref = 0;
-	pi->hasinputminmax = false;
-	pi->inputmin = 0;
-	pi->inputmax = 1;
-	pi->hasminmax = true;
-	pi->outputmin = 0;
-	pi->outputmax = 1;
-	pi->exp = 0;
-	pi->units = "";		// no units defined
-	// initialize parameter 2 ("m_sw_4")
-	pi = self->__commonstate.params + 2;
 	pi->name = "sw1";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_sw_4;
+	pi->defaultvalue = self->m_sw_2;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
@@ -321,18 +300,18 @@ void *create(t_param sr, long vs) {
 	pi->outputmax = 1;
 	pi->exp = 0;
 	pi->units = "";		// no units defined
-	// initialize parameter 3 ("m_sw_3")
-	pi = self->__commonstate.params + 3;
-	pi->name = "sw2";
+	// initialize parameter 2 ("m_time_4")
+	pi = self->__commonstate.params + 2;
+	pi->name = "time";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_sw_3;
+	pi->defaultvalue = self->m_time_4;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
 	pi->inputmax = 1;
 	pi->hasminmax = true;
-	pi->outputmin = 0;
-	pi->outputmax = 1;
+	pi->outputmin = 10;
+	pi->outputmax = 1000;
 	pi->exp = 0;
 	pi->units = "";		// no units defined
 	
