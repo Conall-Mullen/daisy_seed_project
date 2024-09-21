@@ -1,6 +1,6 @@
 {
 	"class": "Module",
-	"id": "node_4070",
+	"id": "node_4410",
 	"inlets": [
 		{
 			"assist": "in1",
@@ -23,20 +23,20 @@
 	},
 	"block": {
 		"class": "Block",
-		"id": "node_4141",
+		"id": "node_4475",
 		"children": [
 			{
 				"class": "Declaration",
-				"id": "node_4084",
-				"name": "delay_43",
+				"id": "node_4418",
+				"name": "delay_54",
 				"inputs": [
 					{
 						"class": "Constant",
-						"id": "node_4085",
+						"id": "node_4419",
 						"value": "samplerate",
 						"eval": 44100,
 						"type": "constant int",
-						"source": "box: [delay samplerate $in1 $in2] => tap_6"
+						"source": "box: [delay samplerate $in1 $in2] => tap_55"
 					}
 				],
 				"attributes": {
@@ -44,404 +44,329 @@
 				},
 				"type": "init Delay",
 				"typename": "Delay",
-				"source": "box: [delay samplerate $in1 $in2] => tap_6"
+				"source": "box: [delay samplerate $in1 $in2] => tap_55"
 			},
 			{
 				"class": "Declaration",
-				"id": "node_4080",
+				"id": "node_4416",
 				"name": "sw1",
 				"inputs": [
 					{
 						"class": "Constant",
-						"id": "node_4081",
+						"id": "node_4417",
 						"value": "1",
 						"eval": 1,
 						"type": "constant int",
-						"source": "box: [param sw1 1 @max 1 @min 0] => sw1"
+						"source": "box: [param sw1 1] => sw1"
 					}
 				],
 				"attributes": {
-					"max": {
-						"class": "Attribute",
-						"id": "node_4082",
-						"name": "max",
-						"value": {
-							"class": "Constant",
-							"id": "node_3865",
-							"value": "1",
-							"eval": 1,
-							"type": "constant int",
-							"source": "3:17 -> 3:18"
-						}
-					},
-					"min": {
-						"class": "Attribute",
-						"id": "node_4083",
-						"name": "min",
-						"value": {
-							"class": "Constant",
-							"id": "node_3867",
-							"value": "0",
-							"eval": 0,
-							"type": "constant int",
-							"source": "3:24 -> 3:25"
-						}
-					}
+					
 				},
 				"type": "control t_sample",
 				"typename": "Param",
-				"source": "box: [param sw1 1 @max 1 @min 0] => sw1"
+				"source": "box: [param sw1 1] => sw1"
 			},
 			{
 				"class": "Declaration",
-				"id": "node_4076",
-				"name": "mix",
-				"inputs": [
-					{
-						"class": "Constant",
-						"id": "node_4077",
-						"value": "0.5",
-						"eval": 0.5,
-						"type": "constant t_sample",
-						"source": "box: [param mix 0.5 @max 1 @min 0] => mix"
-					}
-				],
-				"attributes": {
-					"max": {
-						"class": "Attribute",
-						"id": "node_4078",
-						"name": "max",
-						"value": {
-							"class": "Constant",
-							"id": "node_3871",
-							"value": "1",
-							"eval": 1,
-							"type": "constant int",
-							"source": "2:19 -> 2:20"
-						}
-					},
-					"min": {
-						"class": "Attribute",
-						"id": "node_4079",
-						"name": "min",
-						"value": {
-							"class": "Constant",
-							"id": "node_3873",
-							"value": "0",
-							"eval": 0,
-							"type": "constant int",
-							"source": "2:26 -> 2:27"
-						}
-					}
-				},
-				"type": "control t_sample",
-				"typename": "Param",
-				"source": "box: [param mix 0.5 @max 1 @min 0] => mix"
-			},
-			{
-				"class": "Declaration",
-				"id": "node_4072",
+				"id": "node_4414",
 				"name": "time",
 				"inputs": [
 					{
 						"class": "Constant",
-						"id": "node_4073",
+						"id": "node_4415",
 						"value": "0.5",
 						"eval": 0.5,
 						"type": "constant t_sample",
-						"source": "box: [param time 0.5 @max 1000 @min 10] => time"
+						"source": "box: [param time 0.5] => time"
 					}
 				],
 				"attributes": {
-					"max": {
-						"class": "Attribute",
-						"id": "node_4074",
-						"name": "max",
-						"value": {
-							"class": "Constant",
-							"id": "node_3877",
-							"value": "1000",
-							"eval": 1000,
-							"type": "constant int",
-							"source": "1:20 -> 1:24"
-						}
-					},
-					"min": {
-						"class": "Attribute",
-						"id": "node_4075",
-						"name": "min",
-						"value": {
-							"class": "Constant",
-							"id": "node_3879",
-							"value": "10",
-							"eval": 10,
-							"type": "constant int",
-							"source": "1:30 -> 1:32"
-						}
-					}
+					
 				},
 				"type": "control t_sample",
 				"typename": "Param",
-				"source": "box: [param time 0.5 @max 1000 @min 10] => time"
+				"source": "box: [param time 0.5] => time"
+			},
+			{
+				"class": "Declaration",
+				"id": "node_4412",
+				"name": "mix",
+				"inputs": [
+					{
+						"class": "Constant",
+						"id": "node_4413",
+						"value": "0.5",
+						"eval": 0.5,
+						"type": "constant t_sample",
+						"source": "box: [param mix 0.5] => mix"
+					}
+				],
+				"attributes": {
+					
+				},
+				"type": "control t_sample",
+				"typename": "Param",
+				"source": "box: [param mix 0.5] => mix"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4086",
+				"id": "node_4420",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4087",
+						"id": "node_4421",
 						"operator": "latch",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_4088",
+								"id": "node_4422",
 								"name": "in1",
 								"type": "signal t_sample",
-								"source": "box: [latch $in1 $in2] => latch_4"
+								"source": "box: [latch $in1 $in2] => latch_57"
 							},
 							{
 								"class": "Variable",
-								"id": "node_4089",
+								"id": "node_4423",
 								"name": "sw1",
 								"type": "control t_sample",
-								"source": "box: [latch $in1 $in2] => latch_4"
+								"source": "box: [latch $in1 $in2] => latch_57"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "signal t_sample",
-						"source": "box: [latch $in1 $in2] => latch_4"
+						"source": "box: [latch $in1 $in2] => latch_57"
 					}
 				],
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4090",
-						"name": "latch_4",
+						"id": "node_4424",
+						"name": "latch_57",
 						"type": "signal t_sample",
-						"source": "box: [latch $in1 $in2] => latch_4"
+						"source": "box: [latch $in1 $in2] => latch_57"
 					}
 				],
-				"source": "box: [latch $in1 $in2] => latch_4"
+				"source": "box: [latch $in1 $in2] => latch_57"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4091",
+				"id": "node_4425",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4092",
+						"id": "node_4426",
 						"operator": "mul",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_4093",
+								"id": "node_4427",
 								"name": "time",
 								"type": "control t_sample",
-								"source": "box: [mul $in1 0.001] => mul_8"
+								"source": "box: [mul $in1 0.001] => mul_53"
 							},
 							{
 								"class": "Constant",
-								"id": "node_4094",
+								"id": "node_4428",
 								"value": "0.001",
 								"eval": 0.001,
 								"type": "constant t_sample",
-								"source": "box: [mul $in1 0.001] => mul_8"
+								"source": "box: [mul $in1 0.001] => mul_53"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "control t_sample",
-						"source": "box: [mul $in1 0.001] => mul_8"
+						"source": "box: [mul $in1 0.001] => mul_53"
 					}
 				],
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4095",
-						"name": "mul_8",
+						"id": "node_4429",
+						"name": "mul_53",
 						"type": "control t_sample",
-						"source": "box: [mul $in1 0.001] => mul_8"
+						"source": "box: [mul $in1 0.001] => mul_53"
 					}
 				],
-				"source": "box: [mul $in1 0.001] => mul_8"
+				"source": "box: [mul $in1 0.001] => mul_53"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4096",
+				"id": "node_4430",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4097",
+						"id": "node_4431",
 						"operator": "mul",
 						"inputs": [
 							{
 								"class": "Constant",
-								"id": "node_4098",
+								"id": "node_4432",
 								"value": "SAMPLERATE",
 								"eval": 44100,
 								"type": "constant int",
-								"source": "box: [mul $in1 $in2] => mul_7"
+								"source": "box: [mul $in1 $in2] => mul_56"
 							},
 							{
 								"class": "Variable",
-								"id": "node_4099",
-								"name": "mul_8",
+								"id": "node_4433",
+								"name": "mul_53",
 								"type": "control t_sample",
-								"source": "box: [mul $in1 $in2] => mul_7"
+								"source": "box: [mul $in1 $in2] => mul_56"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "control t_sample",
-						"source": "box: [mul $in1 $in2] => mul_7"
+						"source": "box: [mul $in1 $in2] => mul_56"
 					}
 				],
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4100",
-						"name": "mul_7",
+						"id": "node_4434",
+						"name": "mul_56",
 						"type": "control t_sample",
-						"source": "box: [mul $in1 $in2] => mul_7"
+						"source": "box: [mul $in1 $in2] => mul_56"
 					}
 				],
-				"source": "box: [mul $in1 $in2] => mul_7"
+				"source": "box: [mul $in1 $in2] => mul_56"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4101",
+				"id": "node_4435",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4102",
+						"id": "node_4436",
 						"operator": "read",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_4103",
-								"name": "delay_43",
+								"id": "node_4437",
+								"name": "delay_54",
 								"type": "init Delay",
-								"source": "box: [delay samplerate $in1 $in2] => tap_6"
+								"source": "box: [delay samplerate $in1 $in2] => tap_55"
 							},
 							{
 								"class": "Variable",
-								"id": "node_4104",
-								"name": "mul_7",
+								"id": "node_4438",
+								"name": "mul_56",
 								"type": "control t_sample",
-								"source": "box: [delay samplerate $in1 $in2] => tap_6"
+								"source": "box: [delay samplerate $in1 $in2] => tap_55"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "signal t_sample",
-						"source": "box: [delay samplerate $in1 $in2] => tap_6"
+						"source": "box: [delay samplerate $in1 $in2] => tap_55"
 					}
 				],
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4105",
-						"name": "tap_6",
+						"id": "node_4439",
+						"name": "tap_55",
 						"type": "signal t_sample",
-						"source": "box: [delay samplerate $in1 $in2] => tap_6"
+						"source": "box: [delay samplerate $in1 $in2] => tap_55"
 					}
 				],
-				"source": "box: [delay samplerate $in1 $in2] => tap_6"
+				"source": "box: [delay samplerate $in1 $in2] => tap_55"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4124",
+				"id": "node_4458",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4125",
+						"id": "node_4459",
 						"operator": "add",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_4134",
-								"name": "latch_4",
+								"id": "node_4468",
+								"name": "latch_57",
 								"type": "signal t_sample",
-								"source": "code: 1:9 -> 1:9 [mix $in1 $in2 $in3] => mix_18"
+								"source": "code: 1:9 -> 1:9 [mix $in1 $in2 $in3] => mix_52"
 							},
 							{
 								"class": "Expression",
-								"id": "node_4127",
+								"id": "node_4461",
 								"operator": "mul",
 								"inputs": [
 									{
 										"class": "Variable",
-										"id": "node_4135",
+										"id": "node_4469",
 										"name": "mix",
 										"type": "control t_sample",
-										"source": "code: 1:13 -> 1:13 [mix $in1 $in2 $in3] => mix_18"
+										"source": "code: 1:13 -> 1:13 [mix $in1 $in2 $in3] => mix_52"
 									},
 									{
 										"class": "Expression",
-										"id": "node_4129",
+										"id": "node_4463",
 										"operator": "sub",
 										"inputs": [
 											{
 												"class": "Variable",
-												"id": "node_4136",
-												"name": "tap_6",
+												"id": "node_4470",
+												"name": "tap_55",
 												"type": "signal t_sample",
-												"source": "code: 1:18 -> 1:18 [mix $in1 $in2 $in3] => mix_18"
+												"source": "code: 1:18 -> 1:18 [mix $in1 $in2 $in3] => mix_52"
 											},
 											{
 												"class": "Variable",
-												"id": "node_4137",
-												"name": "latch_4",
+												"id": "node_4471",
+												"name": "latch_57",
 												"type": "signal t_sample",
-												"source": "code: 1:22 -> 1:22 [mix $in1 $in2 $in3] => mix_18"
+												"source": "code: 1:22 -> 1:22 [mix $in1 $in2 $in3] => mix_52"
 											}
 										],
 										"attributes": {
 											
 										},
 										"type": "signal t_sample",
-										"source": "code: 1:18 -> 1:25 [mix $in1 $in2 $in3] => mix_18"
+										"source": "code: 1:18 -> 1:25 [mix $in1 $in2 $in3] => mix_52"
 									}
 								],
 								"attributes": {
 									
 								},
 								"type": "signal t_sample",
-								"source": "code: 1:13 -> 1:25 [mix $in1 $in2 $in3] => mix_18"
+								"source": "code: 1:13 -> 1:25 [mix $in1 $in2 $in3] => mix_52"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "signal t_sample",
-						"source": "code: 1:9 -> 1:25 [mix $in1 $in2 $in3] => mix_18"
+						"source": "code: 1:9 -> 1:25 [mix $in1 $in2 $in3] => mix_52"
 					}
 				],
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4133",
-						"name": "mix_46",
+						"id": "node_4467",
+						"name": "mix_59",
 						"type": "signal t_sample",
-						"source": "code: 1:2 -> 1:2 [mix $in1 $in2 $in3] => mix_18"
+						"source": "code: 1:2 -> 1:2 [mix $in1 $in2 $in3] => mix_52"
 					}
 				],
-				"source": "code: 1:2 -> 1:25 [mix $in1 $in2 $in3] => mix_18"
+				"source": "code: 1:2 -> 1:25 [mix $in1 $in2 $in3] => mix_52"
 			},
 			{
 				"class": "Statement",
-				"id": "node_4112",
+				"id": "node_4446",
 				"inputs": [
 					{
 						"class": "Variable",
-						"id": "node_4142",
-						"name": "mix_46",
+						"id": "node_4476",
+						"name": "mix_59",
 						"type": "signal t_sample",
 						"source": "box: [out 1 $in1] => "
 					}
@@ -449,7 +374,7 @@
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4114",
+						"id": "node_4448",
 						"name": "out1",
 						"type": "signal t_sample",
 						"source": "box: [out 1 $in1] => "
@@ -459,12 +384,12 @@
 			},
 			{
 				"class": "Statement",
-				"id": "node_4115",
+				"id": "node_4449",
 				"inputs": [
 					{
 						"class": "Variable",
-						"id": "node_4143",
-						"name": "mix_46",
+						"id": "node_4477",
+						"name": "mix_59",
 						"type": "signal t_sample",
 						"source": "box: [out 2 $in1] => "
 					}
@@ -472,7 +397,7 @@
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_4117",
+						"id": "node_4451",
 						"name": "out2",
 						"type": "signal t_sample",
 						"source": "box: [out 2 $in1] => "
@@ -482,41 +407,41 @@
 			},
 			{
 				"class": "Statement",
-				"id": "node_4118",
+				"id": "node_4452",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_4119",
+						"id": "node_4453",
 						"operator": "write",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_4120",
-								"name": "delay_43",
+								"id": "node_4454",
+								"name": "delay_54",
 								"type": "init Delay",
-								"source": "box: [delay samplerate $in1 $in2] => tap_6"
+								"source": "box: [delay samplerate $in1 $in2] => tap_55"
 							},
 							{
 								"class": "Variable",
-								"id": "node_4121",
-								"name": "latch_4",
+								"id": "node_4455",
+								"name": "latch_57",
 								"type": "signal t_sample",
-								"source": "box: [delay samplerate $in1 $in2] => tap_6"
+								"source": "box: [delay samplerate $in1 $in2] => tap_55"
 							}
 						],
 						"attributes": {
 							
 						},
 						"type": "signal void",
-						"source": "box: [delay samplerate $in1 $in2] => tap_6"
+						"source": "box: [delay samplerate $in1 $in2] => tap_55"
 					}
 				],
 				"outputs": {
 					
 				},
-				"source": "box: [delay samplerate $in1 $in2] => tap_6"
+				"source": "box: [delay samplerate $in1 $in2] => tap_55"
 			}
 		]
 	},
-	"source": "patcher: gen.patcher 0x7fec42542b90 graph 0x600000278a20"
+	"source": "patcher: gen.patcher 0x7fec3c2c6120 graph 0x6000001e5890"
 }
