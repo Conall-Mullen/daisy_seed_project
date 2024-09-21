@@ -1,22 +1,22 @@
-{	
-	"name": "custom",
-	"som": "seed",
-	"components": {
-		"sw1": {
-			"component": "Switch",
-			"pin": 18
-		},
-		"knob1": {
-			"component": "AnalogControl",
-			"pin": 21
-		},
-		"knob2": {
-			"component": "AnalogControl",
-			"pin": 25
-		},
-		"sw2": {
-			"component": "Switch",
-			"pin": 28
-		}
-	}
+{
+  "name": "custom",
+  "som": "seed",
+  "components": {
+    "sw1": {
+      "component": "Switch",
+      "pin": 18
+    },
+    "time": {
+      "component": "AnalogControl",
+      "pin": 21
+    },
+    "mix": {
+      "component": "AnalogControl",
+      "pin": 25
+    },
+    "sw2": {
+      "component": "Switch",
+      "pin": 28
+    }
+  }
 }

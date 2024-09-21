@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 300.0, 252.0, 640.0, 480.0 ],
+		"rect" : [ 228.0, 216.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,75 +40,13 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 445.0, 259.0, 89.0, 22.0 ],
-					"text" : "prepend knob2"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-21",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 354.0, 259.0, 89.0, 22.0 ],
-					"text" : "prepend knob1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"floatoutput" : 1,
-					"id" : "obj-20",
-					"maxclass" : "dial",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 445.0, 207.0, 40.0, 40.0 ],
-					"size" : 1.0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"floatoutput" : 1,
-					"id" : "obj-16",
-					"maxclass" : "dial",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 354.0, 207.0, 40.0, 40.0 ],
-					"size" : 1.0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "ezdac~",
-					"numinlets" : 2,
-					"numoutlets" : 0,
-					"patching_rect" : [ 44.0, 401.0, 45.0, 45.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"basictuning" : 440,
 					"data" : 					{
 						"clips" : [ 							{
-								"absolutepath" : "drumLoop.aif",
-								"filename" : "drumLoop.aif",
+								"absolutepath" : "cherokee.aif",
+								"filename" : "cherokee.aif",
 								"filekind" : "audiofile",
-								"id" : "u078004637",
+								"id" : "u369005109",
 								"loop" : 1,
 								"content_state" : 								{
 									"loop" : 1
@@ -120,7 +58,7 @@
 ,
 					"followglobaltempo" : 0,
 					"formantcorrection" : 0,
-					"id" : "obj-13",
+					"id" : "obj-15",
 					"maxclass" : "playlist~",
 					"mode" : "basic",
 					"numinlets" : 1,
@@ -129,10 +67,73 @@
 					"originaltempo" : 120.0,
 					"outlettype" : [ "signal", "signal", "signal", "", "dictionary" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 44.0, 223.0, 150.0, 30.0 ],
+					"patching_rect" : [ 44.0, 177.0, 150.0, 30.0 ],
 					"pitchcorrection" : 0,
 					"quality" : "basic",
 					"timestretch" : [ 0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 435.0, 259.0, 75.0, 22.0 ],
+					"text" : "prepend mix"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"floatoutput" : 1,
+					"id" : "obj-7",
+					"maxclass" : "dial",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 435.0, 207.0, 40.0, 40.0 ],
+					"size" : 1.0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 354.0, 259.0, 79.0, 22.0 ],
+					"text" : "prepend time"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"floatoutput" : 1,
+					"id" : "obj-16",
+					"maxclass" : "dial",
+					"min" : 10.0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 354.0, 207.0, 40.0, 40.0 ],
+					"size" : 1000.0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "ezdac~",
+					"numinlets" : 2,
+					"numoutlets" : 0,
+					"patching_rect" : [ 44.0, 401.0, 45.0, 45.0 ]
 				}
 
 			}
@@ -188,7 +189,7 @@
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 44.0, 325.0, 107.0, 22.0 ],
@@ -266,15 +267,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 1 ],
-					"source" : [ "obj-13", 1 ]
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-15", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-13", 0 ]
+					"source" : [ "obj-15", 0 ]
 				}
 
 			}
@@ -294,13 +295,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-20", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"midpoints" : [ 363.5, 302.5, 53.5, 302.5 ],
 					"source" : [ "obj-21", 0 ]
@@ -310,8 +304,8 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"midpoints" : [ 454.5, 302.5, 53.5, 302.5 ],
-					"source" : [ "obj-22", 0 ]
+					"midpoints" : [ 444.5, 302.5, 53.5, 302.5 ],
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
@@ -326,6 +320,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
 					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-7", 0 ]
 				}
 
 			}
@@ -361,16 +362,16 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "cherokee.aif",
+				"bootpath" : "C74:/media/msp",
+				"type" : "AIFF",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "daisy_gen_1.gendsp",
 				"bootpath" : "~/Documents/Max Patches/daisy_seed",
 				"patcherrelativepath" : ".",
 				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "drumLoop.aif",
-				"bootpath" : "C74:/media/msp",
-				"type" : "AIFF",
 				"implicit" : 1
 			}
 , 			{
