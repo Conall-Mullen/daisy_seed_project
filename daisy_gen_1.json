@@ -1,6 +1,6 @@
 {
 	"class": "Module",
-	"id": "node_658",
+	"id": "node_973",
 	"inlets": [
 		{
 			"assist": "in1",
@@ -23,16 +23,16 @@
 	},
 	"block": {
 		"class": "Block",
-		"id": "node_674",
+		"id": "node_989",
 		"children": [
 			{
 				"class": "Declaration",
-				"id": "node_660",
+				"id": "node_975",
 				"name": "mix",
 				"inputs": [
 					{
 						"class": "Constant",
-						"id": "node_661",
+						"id": "node_976",
 						"value": "0.5",
 						"eval": 0.5,
 						"type": "constant t_sample",
@@ -48,23 +48,23 @@
 			},
 			{
 				"class": "Statement",
-				"id": "node_662",
+				"id": "node_977",
 				"inputs": [
 					{
 						"class": "Expression",
-						"id": "node_663",
+						"id": "node_978",
 						"operator": "mul",
 						"inputs": [
 							{
 								"class": "Variable",
-								"id": "node_664",
+								"id": "node_979",
 								"name": "in1",
 								"type": "signal t_sample",
 								"source": "box: [mul $in1 $in2] => mul_20"
 							},
 							{
 								"class": "Variable",
-								"id": "node_665",
+								"id": "node_980",
 								"name": "mix",
 								"type": "control t_sample",
 								"source": "box: [mul $in1 $in2] => mul_20"
@@ -80,7 +80,7 @@
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_666",
+						"id": "node_981",
 						"name": "mul_20",
 						"type": "signal t_sample",
 						"source": "box: [mul $in1 $in2] => mul_20"
@@ -90,11 +90,11 @@
 			},
 			{
 				"class": "Statement",
-				"id": "node_667",
+				"id": "node_982",
 				"inputs": [
 					{
 						"class": "Variable",
-						"id": "node_668",
+						"id": "node_983",
 						"name": "mul_20",
 						"type": "signal t_sample",
 						"source": "box: [out 2 $in1] => "
@@ -103,7 +103,7 @@
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_669",
+						"id": "node_984",
 						"name": "out2",
 						"type": "signal t_sample",
 						"source": "box: [out 2 $in1] => "
@@ -113,11 +113,11 @@
 			},
 			{
 				"class": "Statement",
-				"id": "node_670",
+				"id": "node_985",
 				"inputs": [
 					{
 						"class": "Variable",
-						"id": "node_671",
+						"id": "node_986",
 						"name": "mul_20",
 						"type": "signal t_sample",
 						"source": "box: [out 1 $in1] => "
@@ -126,7 +126,7 @@
 				"outputs": [
 					{
 						"class": "Variable",
-						"id": "node_672",
+						"id": "node_987",
 						"name": "out1",
 						"type": "signal t_sample",
 						"source": "box: [out 1 $in1] => "
