@@ -71,10 +71,10 @@ typedef struct State {
 	Delay m_delay_1;
 	int vectorsize;
 	int __exception;
-	t_sample m_mix_4;
+	t_sample m_sw_4;
 	t_sample samplerate;
-	t_sample m_time_3;
-	t_sample m_sw_2;
+	t_sample m_mix_3;
+	t_sample m_time_2;
 	t_sample __m_latch_5;
 	// re-initialize all member variables;
 	inline void reset(t_param __sr, int __vs) {
@@ -82,9 +82,9 @@ typedef struct State {
 		vectorsize = __vs;
 		samplerate = __sr;
 		m_delay_1.reset("m_delay_1", samplerate);
-		m_sw_2 = ((int)1);
-		m_time_3 = ((t_sample)0.5);
-		m_mix_4 = ((t_sample)0.5);
+		m_time_2 = ((t_sample)0.5);
+		m_mix_3 = ((t_sample)0.5);
+		m_sw_4 = ((int)1);
 		__m_latch_5 = 0;
 		genlib_reset_complete(this);
 		
@@ -103,18 +103,18 @@ typedef struct State {
 			return __exception;
 			
 		};
-		t_sample mul_53 = (m_time_3 * ((t_sample)0.001));
-		t_sample mul_56 = (samplerate * mul_53);
+		t_sample mul_2 = (m_time_2 * ((t_sample)0.001));
+		t_sample mul_5 = (samplerate * mul_2);
 		// the main sample loop;
 		while ((__n--)) {
 			const t_sample in1 = (*(__in1++));
-			__m_latch_5 = ((m_sw_2 != 0) ? in1 : __m_latch_5);
-			t_sample latch_57 = __m_latch_5;
-			t_sample tap_55 = m_delay_1.read_linear(mul_56);
-			t_sample mix_60 = (latch_57 + (m_mix_4 * (tap_55 - latch_57)));
-			t_sample out1 = mix_60;
-			t_sample out2 = mix_60;
-			m_delay_1.write(latch_57);
+			__m_latch_5 = ((m_sw_4 != 0) ? in1 : __m_latch_5);
+			t_sample latch_6 = __m_latch_5;
+			t_sample tap_4 = m_delay_1.read_linear(mul_5);
+			t_sample mix_10 = (latch_6 + (m_mix_3 * (tap_4 - latch_6)));
+			t_sample out2 = mix_10;
+			t_sample out1 = mix_10;
+			m_delay_1.write(latch_6);
 			m_delay_1.step();
 			// assign results to output buffer;
 			(*(__out1++)) = out1;
@@ -124,14 +124,14 @@ typedef struct State {
 		return __exception;
 		
 	};
-	inline void set_sw1(t_param _value) {
-		m_sw_2 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
-	};
 	inline void set_time(t_param _value) {
-		m_time_3 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+		m_time_2 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
 	};
 	inline void set_mix(t_param _value) {
-		m_mix_4 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+		m_mix_3 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
+	};
+	inline void set_sw1(t_param _value) {
+		m_sw_4 = (_value < 0 ? 0 : (_value > 1 ? 1 : _value));
 	};
 	
 } State;
@@ -187,9 +187,9 @@ void setparameter(CommonState *cself, long index, t_param value, void *ref) {
 void getparameter(CommonState *cself, long index, t_param *value) {
 	State *self = (State *)cself;
 	switch (index) {
-		case 0: *value = self->m_mix_4; break;
-		case 1: *value = self->m_sw_2; break;
-		case 2: *value = self->m_time_3; break;
+		case 0: *value = self->m_mix_3; break;
+		case 1: *value = self->m_sw_4; break;
+		case 2: *value = self->m_time_2; break;
 		
 		default: break;
 	}
@@ -272,11 +272,11 @@ void *create(t_param sr, long vs) {
 	self->__commonstate.vs = vs;
 	self->__commonstate.params = (ParamInfo *)genlib_sysmem_newptr(3 * sizeof(ParamInfo));
 	self->__commonstate.numparams = 3;
-	// initialize parameter 0 ("m_mix_4")
+	// initialize parameter 0 ("m_mix_3")
 	pi = self->__commonstate.params + 0;
 	pi->name = "mix";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_mix_4;
+	pi->defaultvalue = self->m_mix_3;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
@@ -286,11 +286,11 @@ void *create(t_param sr, long vs) {
 	pi->outputmax = 1;
 	pi->exp = 0;
 	pi->units = "";		// no units defined
-	// initialize parameter 1 ("m_sw_2")
+	// initialize parameter 1 ("m_sw_4")
 	pi = self->__commonstate.params + 1;
 	pi->name = "sw1";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_sw_2;
+	pi->defaultvalue = self->m_sw_4;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
@@ -300,11 +300,11 @@ void *create(t_param sr, long vs) {
 	pi->outputmax = 1;
 	pi->exp = 0;
 	pi->units = "";		// no units defined
-	// initialize parameter 2 ("m_time_3")
+	// initialize parameter 2 ("m_time_2")
 	pi = self->__commonstate.params + 2;
 	pi->name = "time";
 	pi->paramtype = GENLIB_PARAMTYPE_FLOAT;
-	pi->defaultvalue = self->m_time_3;
+	pi->defaultvalue = self->m_time_2;
 	pi->defaultref = 0;
 	pi->hasinputminmax = false;
 	pi->inputmin = 0;
